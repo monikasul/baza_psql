@@ -34,9 +34,6 @@ CREATE TABLE public.gatunki_zwierzat (
     rodzaj_pozywienia character varying
 );
 
-
-ALTER TABLE public.gatunki_zwierzat OWNER TO postgres;
-
 --
 -- Name: zwierzeta; Type: TABLE; Schema: public; Owner: postgres
 --
@@ -52,8 +49,6 @@ CREATE TABLE public.zwierzeta (
 );
 
 
-ALTER TABLE public.zwierzeta OWNER TO postgres;
-
 --
 -- Name: emerytowane_zwierzeta; Type: VIEW; Schema: public; Owner: postgres
 --
@@ -68,7 +63,7 @@ CREATE VIEW public.emerytowane_zwierzeta AS
   WHERE ((g.dlugosc_zycia / 2) < z.wiek);
 
 
-ALTER TABLE public.emerytowane_zwierzeta OWNER TO postgres;
+
 
 --
 -- Name: gatunki_zagrozone_wyginieciem; Type: VIEW; Schema: public; Owner: postgres
@@ -85,7 +80,7 @@ CREATE VIEW public.gatunki_zagrozone_wyginieciem AS
   WHERE ((g.kategoria_zagrozenia)::text = ANY ((ARRAY['CR'::character varying, 'EN'::character varying, 'VU'::character varying])::text[]));
 
 
-ALTER TABLE public.gatunki_zagrozone_wyginieciem OWNER TO postgres;
+
 
 --
 -- Name: liczba_gromad; Type: VIEW; Schema: public; Owner: postgres
@@ -99,7 +94,7 @@ CREATE VIEW public.liczba_gromad AS
   GROUP BY g.gromada;
 
 
-ALTER TABLE public.liczba_gromad OWNER TO postgres;
+
 
 --
 -- Name: liczba_rzedow; Type: VIEW; Schema: public; Owner: postgres
@@ -113,7 +108,7 @@ CREATE VIEW public.liczba_rzedow AS
   GROUP BY g.rzad;
 
 
-ALTER TABLE public.liczba_rzedow OWNER TO postgres;
+
 
 --
 -- Name: najstarsze_zwierzeta; Type: VIEW; Schema: public; Owner: postgres
@@ -130,7 +125,7 @@ CREATE VIEW public.najstarsze_zwierzeta AS
   ORDER BY z.wiek DESC;
 
 
-ALTER TABLE public.najstarsze_zwierzeta OWNER TO postgres;
+
 
 --
 -- Name: opiekunowie; Type: TABLE; Schema: public; Owner: postgres
@@ -146,7 +141,7 @@ CREATE TABLE public.opiekunowie (
 );
 
 
-ALTER TABLE public.opiekunowie OWNER TO postgres;
+
 
 --
 -- Name: sektor; Type: TABLE; Schema: public; Owner: postgres
@@ -162,7 +157,7 @@ CREATE TABLE public.sektor (
 );
 
 
-ALTER TABLE public.sektor OWNER TO postgres;
+
 
 --
 -- Name: opiekunowie_i_zwierzeta; Type: VIEW; Schema: public; Owner: postgres
@@ -180,7 +175,7 @@ CREATE VIEW public.opiekunowie_i_zwierzeta AS
      JOIN public.opiekunowie o ON ((s.id_opiekuna = o.id_opiekuna)));
 
 
-ALTER TABLE public.opiekunowie_i_zwierzeta OWNER TO postgres;
+
 
 --
 -- Name: podzial_plci_w_sektorach; Type: VIEW; Schema: public; Owner: postgres
@@ -206,7 +201,7 @@ CREATE VIEW public.podzial_plci_w_sektorach AS
   GROUP BY g.nazwa_gatunku, s.nazwa_sektoru;
 
 
-ALTER TABLE public.podzial_plci_w_sektorach OWNER TO postgres;
+
 
 --
 -- Name: pokarmy; Type: TABLE; Schema: public; Owner: postgres
@@ -221,7 +216,7 @@ CREATE TABLE public.pokarmy (
 );
 
 
-ALTER TABLE public.pokarmy OWNER TO postgres;
+
 
 --
 -- Name: rozklad_dnia_opiekuna; Type: VIEW; Schema: public; Owner: postgres
@@ -239,7 +234,6 @@ CREATE VIEW public.rozklad_dnia_opiekuna AS
      JOIN public.sektor s ON ((o.id_opiekuna = s.id_opiekuna)));
 
 
-ALTER TABLE public.rozklad_dnia_opiekuna OWNER TO postgres;
 
 --
 -- Name: rzedy_zwierzat_w_sektorach; Type: VIEW; Schema: public; Owner: postgres
@@ -255,7 +249,7 @@ CREATE VIEW public.rzedy_zwierzat_w_sektorach AS
   GROUP BY s.nazwa_sektoru, g.rzad;
 
 
-ALTER TABLE public.rzedy_zwierzat_w_sektorach OWNER TO postgres;
+
 
 --
 -- Name: sektory_i_pozywienie; Type: VIEW; Schema: public; Owner: postgres
@@ -274,7 +268,7 @@ CREATE VIEW public.sektory_i_pozywienie AS
   ORDER BY g.nazwa_gatunku;
 
 
-ALTER TABLE public.sektory_i_pozywienie OWNER TO postgres;
+
 
 --
 -- Name: sektory_sprzatane_o_godz_12; Type: VIEW; Schema: public; Owner: postgres
@@ -289,7 +283,7 @@ CREATE VIEW public.sektory_sprzatane_o_godz_12 AS
   WHERE (s.czas_karmienia = '12:00:00'::time without time zone);
 
 
-ALTER TABLE public.sektory_sprzatane_o_godz_12 OWNER TO postgres;
+
 
 --
 -- Name: wykaz_karmienia; Type: VIEW; Schema: public; Owner: postgres
@@ -307,7 +301,7 @@ CREATE VIEW public.wykaz_karmienia AS
      JOIN public.pokarmy p ON ((z.id_pokarmu = p.id_pokarmu)));
 
 
-ALTER TABLE public.wykaz_karmienia OWNER TO postgres;
+
 
 --
 -- Data for Name: gatunki_zwierzat; Type: TABLE DATA; Schema: public; Owner: postgres
